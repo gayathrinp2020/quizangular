@@ -1,0 +1,15 @@
+<h2>Quiz</h2>
+
+<div *ngFor="let question of questions; let i = index">
+  <p>{{ i + 1 }}. {{ question.question }}</p>
+  <ul>
+    <li *ngFor="let option of question.options">
+      <label>
+        <input type="radio" name="{{ 'question-' + i }}" [(ngModel)]="question.selected" [value]="option">
+        {{ option }}
+      </label>
+    </li>
+  </ul>
+</div>
+
+<button (click)="submitQuiz()">Submit</button>

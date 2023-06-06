@@ -7,14 +7,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  openQuizInNewWindow() {
+    window.open('/quizpage', '_blank');
+  }
+
   username: string = '';
   password: string = '';
   constructor(private http: HttpClient) {}
   login() {
-    const loginData: { username: string; password: string } = {
-      username: this.username,
-      password: this.password,
-    };
+    const loginData: { username: string; password: string; timestamp: number } =
+      {
+        username: this.username,
+        password: this.password,
+        timestamp: Date.now(),
+      };
 
     this.http.post('/api/login', loginData).subscribe(
       (response) => {
