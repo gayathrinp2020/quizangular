@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizpageComponent } from './quizpage/quizpage.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { QuizpageComponent } from './quizpage/quizpage.component';
     LoginComponent,
     QuizComponent,
     QuizpageComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

@@ -100,6 +100,3 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.fimage img{
-  height: -webkit-fill-available; 
-}

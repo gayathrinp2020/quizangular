@@ -21,8 +21,10 @@ export class LoginComponent {
         password: this.password,
         timestamp: Date.now(),
       };
+    console.log(this.username);
+    console.log(typeof Date.now());
 
-    this.http.post('/api/login', loginData).subscribe(
+    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
       (response) => {
         console.log('Login successful:', response);
       },
