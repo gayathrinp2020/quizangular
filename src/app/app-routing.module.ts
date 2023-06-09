@@ -9,7 +9,6 @@ import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'quizpage', component: QuizpageComponent },
   {
     path: 'quizpage',
     component: QuizpageComponent,
