@@ -17,15 +17,17 @@ export class LoginComponent {
       password: this.password,
     };
 
-    this.http.post('http://localhost:3000/api/index', loginData).subscribe(
+    console.log(this.username, this.password);
+
+    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
       (response: any) => {
         console.log('Login successful:', response);
         window.open('/quizpage', '_blank');
-      },
-      (error: any) => {
-        console.error('Login error:', error);
-        alert('Not a Registered user');
       }
+      // (error: any) => {
+      //   console.error('Login error:', error);
+      //   alert('Not a Registered user');
+      // }
     );
 
     // Reset the form after login logic

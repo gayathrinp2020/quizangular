@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-python',
-  // template: `
-  //   <h1>Tab Example</h1>
-  //   <app-tab [tabs]="tabs" [activeTab]="selectedTab"></app-tab>
-  // `,
   templateUrl: './python.component.html',
   styleUrls: ['./python.component.css'],
 })
 export class PythonComponent {
   selectedTab: Tab | undefined;
-  activeTab: any;
   tabs: Tab[] = [
     {
       title: 'Tab 1',
@@ -25,9 +21,13 @@ export class PythonComponent {
       template: 'Content for Tab 3',
     },
   ];
+
+  selectTab(tab: Tab) {
+    this.selectedTab = tab;
+  }
 }
 
-export interface Tab {
+interface Tab {
   title: string;
-  template: any;
+  template: string;
 }

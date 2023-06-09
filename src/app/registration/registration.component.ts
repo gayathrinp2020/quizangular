@@ -25,14 +25,14 @@ export class RegistrationComponent {
     console.log('Registration form submitted:', registrationData);
 
     this.http
-      .post('http://localhost:3000/api/index', registrationData)
+      .post('http://localhost:3000/api/register', registrationData)
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);
-        },
-        (error) => {
-          console.log('Registration error:', error);
         }
+        // (error) => {
+        //   console.log('Registration error:', error);
+        // }
       );
 
     // Reset the form after registration logic

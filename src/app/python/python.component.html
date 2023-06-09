@@ -1,3 +1,13 @@
-<div class="quiz-container">
-    <app-tab [tabs]="tabs" [activeTab]="selectedTab"></app-tab>
+<div class="tabs">
+    <ul class="nav">
+        <li class="tab" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab === selectedTab">
+            {{ tab.title }}
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <ng-container *ngIf="selectedTab">
+            {{ selectedTab.template }}
+        </ng-container>
+    </div>
 </div>

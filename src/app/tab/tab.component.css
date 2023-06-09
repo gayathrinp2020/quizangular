@@ -21,11 +21,7 @@
     align-items: center;
     padding: 0px;
     margin-left:10px;
-   
-     @media (max-width: 768px) {
-      /* width: 90%; */
-    }
-  }
+     }
   
   .tab {
     width: 100%;
@@ -53,6 +49,9 @@
   ul.nav li.active {
     background: #39a2db;
   }
+  
   .TabContent {
-    text-align: center;
+    width: 85%;
+    height: 80vh;
+    overflow-y: auto;
   }
