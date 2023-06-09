@@ -1,0 +1,10 @@
+<div class="tabs">
+    <div class="tab" *ngFor="let tab of tabs" (click)="selectTab(tab)">
+        {{ tab.title }}
+    </div>
+</div>
+<div class="tab-content">
+    <ng-container *ngIf="selectedTab">
+        <ng-container [ngTemplateOutlet]="selectedTab.template"></ng-container>
+    </ng-container>
+</div>
