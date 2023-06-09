@@ -25,13 +25,13 @@ export class RegistrationComponent {
     console.log('Registration form submitted:', registrationData);
 
     this.http
-      .post('http://localhost:3000/api/registration', registrationData)
+      .post('http://localhost:3000/api/index', registrationData)
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);
         },
         (error) => {
-          console.error('Registration error:', error);
+          console.log('Registration error:', error);
         }
       );
 

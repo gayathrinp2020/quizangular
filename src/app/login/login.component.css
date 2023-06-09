@@ -9,7 +9,8 @@
     align-items: center;
     justify-content: space-around;
     color: #fff;
-   
+    position: absolute;
+    top: 60px;   
   }
 .form-section{
   border: 10px solid #fff;
@@ -21,6 +22,8 @@
 
   label {
     display: block;
+    font-size: 16px;
+
   }
 
   input[type="text"],

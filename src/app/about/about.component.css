@@ -1,0 +1,12 @@
+.about-page {
+    padding: 20px;
+    position: absolute;
+    top: 60px;  
+  }
+  
+  .about-image {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -7,29 +8,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  openQuizInNewWindow() {
-    window.open('/quizpage', '_blank');
-  }
-
   username: string = '';
   password: string = '';
   constructor(private http: HttpClient) {}
   login() {
-    const loginData: { username: string; password: string; timestamp: number } =
-      {
-        username: this.username,
-        password: this.password,
-        timestamp: Date.now(),
-      };
-    console.log(this.username);
-    console.log(typeof Date.now());
+    const loginData: { username: string; password: string } = {
+      username: this.username,
+      password: this.password,
+    };
 
-    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
-      (response) => {
+    this.http.post('http://localhost:3000/api/index', loginData).subscribe(
+      (response: any) => {
         console.log('Login successful:', response);
+        window.open('/quizpage', '_blank');
       },
-      (error) => {
+      (error: any) => {
         console.error('Login error:', error);
+        alert('Not a Registered user');
       }
     );
 

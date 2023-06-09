@@ -7,9 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { QuizComponent } from '../components/quiz/quiz.component';
 import { QuizpageComponent } from './quizpage/quizpage.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AboutComponent } from './about/about.component';
+import { PythonComponent } from './python/python.component';
+import { JavascriptComponent } from './javascript/javascript.component';
+import { RectjsComponent } from './rectjs/rectjs.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { RegistrationComponent } from './registration/registration.component';
     QuizComponent,
     QuizpageComponent,
     RegistrationComponent,
+    AboutComponent,
+    PythonComponent,
+    JavascriptComponent,
+    RectjsComponent,
   ],
   imports: [
     BrowserModule,

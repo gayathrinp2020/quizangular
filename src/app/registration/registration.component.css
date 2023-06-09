@@ -4,6 +4,8 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 60px;  
 }
 form{
     width: 500px;
