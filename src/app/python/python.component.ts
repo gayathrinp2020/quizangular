@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuizComponent } from 'src/components/quiz/quiz.component';
 
 @Component({
   selector: 'app-python',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class PythonComponent {
   selectedTab: Tab | undefined;
+
   tabs: Tab[] = [
     {
       title: 'Tab 1',
