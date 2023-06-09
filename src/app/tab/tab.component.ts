@@ -7,10 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class TabComponent {
   @Input() tabs: Tab[] = [];
-  selectedTab: Tab | undefined;
+  @Input() activeTab: Tab | undefined;
 
   selectTab(tab: Tab) {
-    this.selectedTab = tab;
+    this.activeTab = tab; // Update the property name here if needed
   }
 }
 
