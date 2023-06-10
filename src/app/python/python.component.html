@@ -7,7 +7,7 @@
 
     <div class="tab-content">
         <ng-container *ngIf="selectedTab">
-            {{ selectedTab.template }}
+            <ng-container *ngComponentOutlet="selectedTab.component"></ng-container>
         </ng-container>
     </div>
 </div>

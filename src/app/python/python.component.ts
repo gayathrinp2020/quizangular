@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizComponent } from 'src/components/quiz/quiz.component';
 
 @Component({
@@ -12,18 +12,21 @@ export class PythonComponent {
   tabs: Tab[] = [
     {
       title: 'Tab 1',
-      template: 'Content for Tab 1',
+      component: QuizComponent,
     },
     {
       title: 'Tab 2',
-      template: 'Content for Tab 2',
+      component: QuizComponent,
     },
     {
       title: 'Tab 3',
-      template: 'Content for Tab 3',
+      component: QuizComponent,
     },
   ];
 
+  ngOnInit() {
+    this.selectedTab = this.tabs[0]; // Select the first tab by default
+  }
   selectTab(tab: Tab) {
     this.selectedTab = tab;
   }
@@ -31,5 +34,5 @@ export class PythonComponent {
 
 interface Tab {
   title: string;
-  template: string;
+  component: any;
 }
