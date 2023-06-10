@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+interface Question {
+  question: string;
+  options: string[];
+  selected: string;
+}
 
 @Component({
   selector: 'app-quiz',
@@ -6,39 +11,58 @@ import { Component } from '@angular/core';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent {
+  currentQuestionIndex = 0;
   questions = [
     {
-      question: 'What is the capital of France?',
-      options: ['Paris', 'Berlin', 'London', 'Rome'],
-      answer: 'Paris',
+      question:
+        'What is the output of the following code?\n\nprint(2 + 3 * 4 - 6)',
+      options: ['A. 5', 'B. 11', 'C. 8', 'D. 13'],
       selected: '',
     },
     {
-      question: 'Which planet is known as the Red Planet?',
-      options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
-      answer: 'Mars',
-      selected: '',
-    },
-    {
-      question: 'What is the largest ocean in the world?',
+      question: 'Which of the following is not a Python data type?',
       options: [
-        'Pacific Ocean',
-        'Atlantic Ocean',
-        'Indian Ocean',
-        'Arctic Ocean',
+        'A. Integer',
+        'B. String',
+        'C. Float',
+        'D. Boolean',
+        'E. Dictionary',
       ],
-      answer: 'Pacific Ocean',
+      selected: '',
+    },
+    {
+      question:
+        'What is the correct way to comment multiple lines of code in Python?',
+      options: ['A. /* */', 'B. //', 'C. <!-- -->', 'D. #'],
       selected: '',
     },
   ];
 
+  quizSubmitted = false;
+  score = 0;
+
+  getCurrentQuestion() {
+    return this.questions[this.currentQuestionIndex];
+  }
+
+  nextQuestion() {
+    if (this.currentQuestionIndex < this.questions.length - 1) {
+      this.currentQuestionIndex++;
+    }
+  }
+
   submitQuiz() {
-    let score = 0;
-    this.questions.forEach((question) => {
-      if (question.selected === question.answer) {
-        score++;
-      }
-    });
-    alert(`Your score is ${score}/${this.questions.length}`);
+    this.quizSubmitted = true;
+
+    // Calculate the score
+    this.score = this.questions.filter(
+      (question) => question.selected === 'Option A'
+    ).length;
+  }
+  restartQuiz() {
+    this.currentQuestionIndex = 0;
+    this.quizSubmitted = false;
+    this.score = 0;
+    this.questions.forEach((question) => (question.selected = ''));
   }
 }

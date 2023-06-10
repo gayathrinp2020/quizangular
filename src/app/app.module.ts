@@ -14,7 +14,6 @@ import { AboutComponent } from './about/about.component';
 import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
-import { TabComponent } from './tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { TabComponent } from './tab/tab.component';
     PythonComponent,
     JavascriptComponent,
     RectjsComponent,
-    TabComponent,
   ],
   imports: [
     BrowserModule,
