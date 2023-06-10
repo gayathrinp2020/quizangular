@@ -46,3 +46,31 @@
     background-color: #39a2db;
     color: #fff;
   }
+  .selected-answer {
+    color: blue;
+  }
+  .next,
+  .restart {
+    text-align: center;
+  }
+
+  .next-button,
+  .restart-button,.submit-button {
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    align-items: left;
+    margin-top: 15px;
+    color: #fff;
+    background-color: rgb(128, 85, 66);
+  }
+  .next-button:hover,.restart-button:hover,.submit-button:hover {
+    background-color: #764c4c;
+  }
+  .quiz-alert {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  

@@ -1,30 +1,35 @@
 <div class="quiz-container">
   <div *ngIf="currentQuestionIndex < questions.length && !quizSubmitted">
-    <div className="question-count">
-      Question {{currentQuestionIndex + 1}}/{{questions.length}}
+    <div class="question-count">
+      Question {{ currentQuestionIndex + 1 }}/{{ questions.length }}
     </div>
     <div class="question-section">
-      <p>{{ currentQuestionIndex + 1 }}. {{ getCurrentQuestion().question }}</p>
+      <p>{{ getCurrentQuestion().question }}</p>
     </div>
     <div class="answer-section">
       <ul>
         <li *ngFor="let option of getCurrentQuestion().options; let i = index">
           <label>
-            <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().selected" [value]="option">
-            {{ option }}
+            <input type="radio" name="question" [(ngModel)]="questions[currentQuestionIndex].selected"
+              [value]="option" />
+            <span [ngClass]="{'selected-answer': questions[currentQuestionIndex].selected === option}">{{ option
+              }}</span>
           </label>
         </li>
       </ul>
     </div>
 
-    <button (click)="nextQuestion()" *ngIf="currentQuestionIndex < questions.length - 1">Next</button>
+    <button class="next-button" (click)="nextQuestion()" [disabled]="!questions[currentQuestionIndex].selected"
+      *ngIf="currentQuestionIndex < questions.length - 1">Next</button>
+    <div class="quiz-alert" *ngIf="showAlert">Please select an answer before proceeding.</div>
+
   </div>
 
-  <button (click)="submitQuiz()" *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">Submit</button>
+  <button class="submit-button" (click)="submitQuiz()"
+    *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">Submit</button>
 
   <div *ngIf="quizSubmitted">
     <p>Your score: {{ score }} out of {{ questions.length }}</p>
-    <button (click)="restartQuiz()">Restart</button>
-
+    <button class="restart-button" (click)="restartQuiz()">Restart</button>
   </div>
 </div>
