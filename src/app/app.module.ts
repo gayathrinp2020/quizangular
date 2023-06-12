@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
+import { QuizdbComponent } from './quizdb/quizdb.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RectjsComponent } from './rectjs/rectjs.component';
     PythonComponent,
     JavascriptComponent,
     RectjsComponent,
+    QuizdbComponent,
   ],
   imports: [
     BrowserModule,

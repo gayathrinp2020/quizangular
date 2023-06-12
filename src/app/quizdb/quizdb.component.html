@@ -1,0 +1,25 @@
+<div class="quiz-container">
+    <div *ngIf="quizFetched">
+        <h2>{{ getCurrentQuestion().question }}</h2>
+        <ul>
+            <li *ngFor="let option of getCurrentQuestion()?.options; let i = index">
+                <label>
+                    <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().answer"
+                        [value]="option.option" />
+                    {{ option.option }}
+                </label>
+            </li>
+        </ul>
+        <div *ngIf="showAlert" class="alert">
+            Please select an answer.
+        </div>
+        <button (click)="nextQuestion()">Next</button>
+        <button (click)="submitQuiz()">Submit</button>
+    </div>
+
+    <div *ngIf="quizSubmitted">
+        <h2>Quiz submitted!</h2>
+        <p>Your score: {{ score }}</p>
+        <button (click)="restartQuiz()">Restart Quiz</button>
+    </div>
+</div>
