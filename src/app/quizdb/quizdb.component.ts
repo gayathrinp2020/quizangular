@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Question {
+  id: number;
   question: string;
   options: any[];
   answer: string;
@@ -41,9 +42,9 @@ export class QuizdbComponent implements OnInit {
         // Transform the response data to match the expected format
         this.questions = response.map((item: any) => {
           return {
+            id: item.id,
             question: item.question,
             options: item.options,
-            answer: item.answer,
           };
         });
         this.quizFetched = true;
@@ -57,7 +58,7 @@ export class QuizdbComponent implements OnInit {
       !this.questions ||
       this.currentQuestionIndex >= this.questions.length
     ) {
-      return { question: '', options: [], answer: '' };
+      return { id: 0, question: '', options: [], answer: '' };
     }
 
     return this.questions[this.currentQuestionIndex];
@@ -80,9 +81,15 @@ export class QuizdbComponent implements OnInit {
   submitQuiz(): void {
     this.quizSubmitted = true;
 
+    const currentQuestion = this.getCurrentQuestion();
+    const submittedAnswer = {
+      id: currentQuestion.id, // Assuming you have an 'id' property in the Question interface
+      answer: currentQuestion.answer,
+    };
+
     this.http
       .post<SubmitResponse>('http://localhost:3000/api/submit', {
-        answers: this.questions,
+        answers: [submittedAnswer],
       })
       .subscribe((response: SubmitResponse) => {
         this.score = response.score;

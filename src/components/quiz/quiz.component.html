@@ -29,6 +29,7 @@
     *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">Submit</button>
 
   <div *ngIf="quizSubmitted">
+    <h2>Quiz submitted!</h2>
     <p>Your score: {{ score }} out of {{ questions.length }}</p>
     <button class="restart-button" (click)="restartQuiz()">Restart</button>
   </div>

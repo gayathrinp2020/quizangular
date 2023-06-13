@@ -1,25 +1,36 @@
 <div class="quiz-container">
     <div *ngIf="quizFetched">
-        <h2>{{ getCurrentQuestion().question }}</h2>
-        <ul>
-            <li *ngFor="let option of getCurrentQuestion()?.options; let i = index">
-                <label>
-                    <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().answer"
-                        [value]="option.option" />
-                    {{ option.option }}
-                </label>
-            </li>
-        </ul>
-        <div *ngIf="showAlert" class="alert">
-            Please select an answer.
+        <div class="question-count">
+            Question {{ currentQuestionIndex + 1 }}/{{ questions.length }}
         </div>
-        <button (click)="nextQuestion()">Next</button>
-        <button (click)="submitQuiz()">Submit</button>
+        <div class="question-section">
+            <h2>{{ getCurrentQuestion().question }}</h2>
+        </div>
+        <div class="answer-section">
+            <ul>
+                <li *ngFor="let option of getCurrentQuestion().options; let i = index">
+                    <label>
+                        <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().answer"
+                            [value]="option.option" />
+                        {{ option.option }}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <button class="next-button" (click)="nextQuestion()" *ngIf="currentQuestionIndex < questions.length - 1">
+            Next
+        </button>
+        <div class="quiz-alert" *ngIf="showAlert">Please select an answer before proceeding.</div>
     </div>
+
+    <button class="submit-button" (click)="submitQuiz()"
+        *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">
+        Submit
+    </button>
 
     <div *ngIf="quizSubmitted">
         <h2>Quiz submitted!</h2>
-        <p>Your score: {{ score }}</p>
-        <button (click)="restartQuiz()">Restart Quiz</button>
+        <p>Your score: {{ score }} out of {{ questions.length }}</p>
+        <button class="restart-button" (click)="restartQuiz()">Restart</button>
     </div>
 </div>
