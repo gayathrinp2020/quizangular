@@ -8,12 +8,13 @@ interface Question {
   answer: string;
 }
 
-interface QuizResponse {
-  questions: Question[];
-}
-
 interface SubmitResponse {
   score: number;
+}
+
+interface SelectedAnswers {
+  id: number;
+  answers: string[];
 }
 
 @Component({
@@ -28,6 +29,7 @@ export class QuizdbComponent implements OnInit {
   score = 0;
   showAlert = false;
   quizFetched = false;
+  selectedAnswers: SelectedAnswers[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -45,10 +47,10 @@ export class QuizdbComponent implements OnInit {
             id: item.id,
             question: item.question,
             options: item.options,
+            answer: '',
           };
         });
         this.quizFetched = true;
-        console.log(this.questions);
       });
   }
 
@@ -62,6 +64,24 @@ export class QuizdbComponent implements OnInit {
     }
 
     return this.questions[this.currentQuestionIndex];
+  }
+
+  updateSelectedAnswer(selectedOption: string): void {
+    const currentQuestion = this.getCurrentQuestion();
+    const selectedAnswerIndex = this.selectedAnswers.findIndex(
+      (answer) => answer.id === currentQuestion.id
+    );
+
+    if (selectedAnswerIndex > -1) {
+      // Update existing answer
+      this.selectedAnswers[selectedAnswerIndex].answers = [selectedOption];
+    } else {
+      // Add new answer
+      this.selectedAnswers.push({
+        id: currentQuestion.id,
+        answers: [selectedOption],
+      });
+    }
   }
 
   nextQuestion(): void {
@@ -80,16 +100,10 @@ export class QuizdbComponent implements OnInit {
 
   submitQuiz(): void {
     this.quizSubmitted = true;
-
-    const currentQuestion = this.getCurrentQuestion();
-    const submittedAnswer = {
-      id: currentQuestion.id, // Assuming you have an 'id' property in the Question interface
-      answer: currentQuestion.answer,
-    };
-
+    console.log(this.selectedAnswers);
     this.http
       .post<SubmitResponse>('http://localhost:3000/api/submit', {
-        answers: [submittedAnswer],
+        answers: this.selectedAnswers,
       })
       .subscribe((response: SubmitResponse) => {
         this.score = response.score;
@@ -100,6 +114,7 @@ export class QuizdbComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.quizSubmitted = false;
     this.score = 0;
+    this.selectedAnswers = [];
   }
 
   isAnswerSelected(): boolean {

@@ -11,7 +11,7 @@
                 <li *ngFor="let option of getCurrentQuestion().options; let i = index">
                     <label>
                         <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().answer"
-                            [value]="option.option" />
+                            [value]="option.option" (change)="updateSelectedAnswer(option.option)" />
                         {{ option.option }}
                     </label>
                 </li>
