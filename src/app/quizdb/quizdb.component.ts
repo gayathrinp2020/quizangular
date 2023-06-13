@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Question {
@@ -23,6 +23,8 @@ interface SelectedAnswers {
   styleUrls: ['./quizdb.component.css'],
 })
 export class QuizdbComponent implements OnInit {
+  @Input() quizTopic!: string;
+
   currentQuestionIndex = 0;
   questions: Question[] = [];
   quizSubmitted = false;
@@ -39,7 +41,7 @@ export class QuizdbComponent implements OnInit {
 
   fetchQuizQuestions(): void {
     this.http
-      .get<any>('http://localhost:3000/api/quiz') // Use 'any' type for the response
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`) // Use 'any' type for the response
       .subscribe((response: any) => {
         // Transform the response data to match the expected format
         this.questions = response.map((item: any) => {

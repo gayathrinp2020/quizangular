@@ -10,15 +10,15 @@ export class JavascriptComponent {
 
   tabs: Tab[] = [
     {
-      title: 'Tab 1',
+      title: 'Basics',
       component: QuizComponent,
     },
     {
-      title: 'Tab 2',
+      title: 'Data Types',
       component: QuizComponent,
     },
     {
-      title: 'Tab 3',
+      title: 'Control Flow',
       component: QuizComponent,
     },
   ];

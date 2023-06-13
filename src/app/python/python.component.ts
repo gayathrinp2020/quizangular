@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizComponent } from 'src/components/quiz/quiz.component';
+import { QuizdbComponent } from '../quizdb/quizdb.component';
 
 @Component({
   selector: 'app-python',
@@ -11,12 +12,12 @@ export class PythonComponent {
 
   tabs: Tab[] = [
     {
-      title: 'Tab 1',
-      component: QuizComponent,
+      title: 'Python Basics',
+      component: QuizdbComponent,
     },
     {
       title: 'Tab 2',
-      component: QuizComponent,
+      component: QuizdbComponent,
     },
     {
       title: 'Tab 3',
