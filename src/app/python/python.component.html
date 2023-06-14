@@ -6,8 +6,6 @@
     </ul>
 
     <div class="tab-content">
-        <ng-container *ngIf="selectedTab">
-            <ng-container *ngComponentOutlet="selectedTab.component"></ng-container>
-        </ng-container>
+        <ng-container #dynamicComponent></ng-container>
     </div>
 </div>
