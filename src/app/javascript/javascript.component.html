@@ -6,6 +6,7 @@
     </ul>
 
     <div class="tab-content">
-        <ng-container #dynamicComponent></ng-container>
+        {{getSelectedTopic()}}
+        <app-quizdb [quizTopic]="getSelectedTopic()"></app-quizdb>
     </div>
 </div>

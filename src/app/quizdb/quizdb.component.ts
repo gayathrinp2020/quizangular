@@ -32,17 +32,20 @@ export class QuizdbComponent implements OnInit {
   showAlert = false;
   quizFetched = false;
   selectedAnswers: SelectedAnswers[] = [];
+  username: string | null = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.username = localStorage.getItem('username');
+    console.log(this.username);
     console.log(this.quizTopic);
     this.fetchQuizQuestions();
   }
 
   fetchQuizQuestions(): void {
     this.http
-      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`) // Use 'any' type for the response
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`)
       .subscribe((response: any) => {
         // Transform the response data to match the expected format
         this.questions = response.map((item: any) => {
