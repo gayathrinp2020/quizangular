@@ -1,0 +1,11 @@
+<div class="tabs">
+    <ul class="nav">
+        <li class="tab" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab === selectedTab">
+            {{ tab.title }}
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <ng-container #dynamicComponent></ng-container>
+    </div>
+</div>

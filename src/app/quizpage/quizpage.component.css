@@ -1,0 +1,39 @@
+.quiz-page{
+    position: absolute;
+    top:40px
+}
+
+/* navstyle.css */
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: #0b2a31;
+    width: 100vw;
+     }
+  
+  .menu li {
+    display: inline-block;
+  }
+  
+  .menu li a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .menu li a:hover {
+    background-color: #a2aaec;
+  }
+  
+  .menu li a.active {
+    background-color: #4848d1;
+    font-weight: bold;
+  }
+  
+  .link {
+    font-weight: bold;
+  }

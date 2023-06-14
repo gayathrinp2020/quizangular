@@ -1,0 +1,14 @@
+<div class="quiz-page">
+    <div class="nav">
+        <ul class="menu">
+            <li><a routerLink="/quizpage/python" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    target="_self">Python</a></li>
+            <li><a routerLink="/quizpage/javascript" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }" target="_self">Javascript</a></li>
+            <li><a routerLink="/quizpage/rectjs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    target="_self">ReactJS</a></li>
+        </ul>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+routerLink="/about"

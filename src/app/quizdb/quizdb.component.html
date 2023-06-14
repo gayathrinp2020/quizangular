@@ -1,0 +1,38 @@
+<div class="quiz-container">
+    <div *ngIf="quizFetched && !quizSubmitted">
+        <div class="question-count">
+            Question {{ currentQuestionIndex + 1 }}/{{ questions.length }}
+        </div>
+        <div class="question-section">
+            <h2>{{ getCurrentQuestion().question }}</h2>
+        </div>
+        <div class="answer-section">
+            <ul>
+                <li *ngFor="let option of getCurrentQuestion().options; let i = index">
+                    <label [class.selected]="option.option === getCurrentQuestion().answer">
+                        <input type="radio" name="question" [(ngModel)]="getCurrentQuestion().answer"
+                            [value]="option.option" (change)="updateSelectedAnswer(option.option)" />
+                        {{ option.option }}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <button class="next-button" (click)="nextQuestion()" *ngIf="currentQuestionIndex < questions.length - 1">
+            Next
+        </button>
+        <div class="quiz-alert" *ngIf="showAlert">
+            Please select an answer before proceeding.
+        </div>
+    </div>
+
+    <button class="submit-button" (click)="submitQuiz()"
+        *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">
+        Submit
+    </button>
+
+    <div *ngIf="quizSubmitted">
+        <h2>Quiz submitted!</h2>
+        <p>Your score: {{ score }} out of {{ questions.length }}</p>
+        <button class="restart-button" (click)="restartQuiz()">Restart</button>
+    </div>
+</div>
