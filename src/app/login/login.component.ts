@@ -22,12 +22,13 @@ export class LoginComponent {
     this.http.post('http://localhost:3000/api/login', loginData).subscribe(
       (response: any) => {
         console.log('Login successful:', response);
-        window.open('/quizpage', '_blank');
+        window.open('/quizpage', '_self');
+      },
+      // Handle login error
+      (error: any) => {
+        console.error('Login error:', error);
+        alert('Not a Registered user');
       }
-      // (error: any) => {
-      //   console.error('Login error:', error);
-      //   alert('Not a Registered user');
-      // }
     );
 
     // Reset the form after login logic

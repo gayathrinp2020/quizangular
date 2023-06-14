@@ -49,9 +49,9 @@
     background-color: #39a2db;
     color: #fff;
   }
-  .selected-answer {
-    color: blue;
-  }
+  .selected {
+    background-color: rgb(118, 112, 202);
+  } 
   .next,
   .restart {
     text-align: center;

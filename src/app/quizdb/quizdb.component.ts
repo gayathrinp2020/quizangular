@@ -117,6 +117,9 @@ export class QuizdbComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.quizSubmitted = false;
     this.score = 0;
+    this.questions.forEach((question) => {
+      question.answer = '';
+    });
     this.selectedAnswers = [];
   }
 
