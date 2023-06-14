@@ -6,7 +6,8 @@ import {
   ViewChild,
   ViewContainerRef,
   Type,
-  ComponentFactoryResolver, // Add ComponentFactoryResolver import
+  ComponentFactoryResolver,
+  AfterViewInit,
 } from '@angular/core';
 import { QuizdbComponent } from '../quizdb/quizdb.component';
 
@@ -15,7 +16,7 @@ import { QuizdbComponent } from '../quizdb/quizdb.component';
   templateUrl: './python.component.html',
   styleUrls: ['./python.component.css'],
 })
-export class PythonComponent implements OnInit {
+export class PythonComponent implements OnInit, AfterViewInit {
   selectedTab: Tab | undefined;
   customInjector: Injector;
   componentRef: ComponentRef<any> | undefined;
@@ -27,14 +28,19 @@ export class PythonComponent implements OnInit {
       quizTopic: 'Python Basic',
     },
     {
-      title: 'Tab 2',
+      title: 'Control Flow',
       component: QuizdbComponent,
       quizTopic: 'Python Control Flow',
     },
     {
-      title: 'Tab 3',
+      title: 'Data Types',
       component: QuizdbComponent,
       quizTopic: 'Python Data Types',
+    },
+    {
+      title: 'Functions',
+      component: QuizdbComponent,
+      quizTopic: 'Python Functions',
     },
   ];
 
@@ -43,7 +49,7 @@ export class PythonComponent implements OnInit {
 
   constructor(
     private injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver // Add ComponentFactoryResolver to constructor parameters
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
     this.customInjector = Injector.create({
       providers: [],
@@ -53,6 +59,9 @@ export class PythonComponent implements OnInit {
 
   ngOnInit() {
     this.selectedTab = this.tabs[0]; // Select the first tab by default
+  }
+
+  ngAfterViewInit() {
     this.updateCustomInjector();
   }
 
@@ -73,9 +82,10 @@ export class PythonComponent implements OnInit {
 
       const componentFactory =
         this.componentFactoryResolver.resolveComponentFactory(
-          // Use componentFactoryResolver
           this.selectedTab.component
         );
+
+      this.dynamicComponentContainer.clear(); // Clear the container before creating a new component
 
       this.componentRef = this.dynamicComponentContainer.createComponent(
         componentFactory,

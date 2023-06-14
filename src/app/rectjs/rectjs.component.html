@@ -1,6 +1,11 @@
-<div class="quiz-container">
-    <h2>ReactJS</h2>
-    <app-quizdb [quizTopic]="'Python Basic'"></app-quizdb>
-    <app-quizdb [quizTopic]="'Java Basics'"></app-quizdb>
+<div class="tabs">
+    <ul class="nav">
+        <li class="tab" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab === selectedTab">
+            {{ tab.title }}
+        </li>
+    </ul>
 
+    <div class="tab-content">
+        <ng-container #dynamicComponent></ng-container>
+    </div>
 </div>
