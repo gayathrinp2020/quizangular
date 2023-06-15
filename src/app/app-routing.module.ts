@@ -7,6 +7,8 @@ import { AboutComponent } from './about/about.component';
 import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
@@ -18,10 +20,12 @@ const routes: Routes = [
       { path: 'javascript', component: JavascriptComponent },
       { path: 'rectjs', component: RectjsComponent },
     ],
+    canActivate: [AuthGuard],
   },
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'logout', component: LogoutComponent },
 ];
 
 @NgModule({

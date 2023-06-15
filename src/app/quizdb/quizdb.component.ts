@@ -43,8 +43,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     const username = localStorage.getItem('username');
-    console.log(username);
-    console.log(this.quizTopic);
     this.fetchQuizQuestions();
   }
 
@@ -60,11 +58,19 @@ export class QuizdbComponent implements OnInit, OnChanges {
     this.score = 0;
     this.showAlert = false;
     this.selectedAnswers = [];
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const headers = { Authorization: `${token}` };
+    console.log(headers);
     this.http
-      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`)
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`, {
+        headers,
+      })
       .subscribe((response: any) => {
+        const data = response.data;
+        const decoded = response.decoded;
         // Transform the response data to match the expected format
-        this.questions = response.map((item: any) => {
+        this.questions = data.map((item: any) => {
           return {
             id: item.id,
             question: item.question,
@@ -72,6 +78,7 @@ export class QuizdbComponent implements OnInit, OnChanges {
             answer: '',
           };
         });
+        console.log(response.decoded);
         this.quizFetched = true;
       });
   }

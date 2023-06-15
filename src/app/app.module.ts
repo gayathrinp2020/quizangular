@@ -15,6 +15,8 @@ import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
 import { QuizdbComponent } from './quizdb/quizdb.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { QuizdbComponent } from './quizdb/quizdb.component';
     JavascriptComponent,
     RectjsComponent,
     QuizdbComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { QuizdbComponent } from './quizdb/quizdb.component';
     AppRoutingModule,
     RouterModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
