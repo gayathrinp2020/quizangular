@@ -32,7 +32,7 @@
 
     <div *ngIf="quizSubmitted">
         <h2>Quiz submitted!</h2>
-        <p> {{ username }} </p>
+        <!-- <p> {{ username }} </p> -->
         <p>Your score: {{ score }} out of {{ questions.length }}</p>
         <button class="restart-button" (click)="restartQuiz()">Restart</button>
     </div>

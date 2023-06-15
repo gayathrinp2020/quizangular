@@ -25,6 +25,11 @@ export class JavascriptComponent implements OnInit {
       quizTopic: 'Java Control Flow',
     },
   ];
+  quizTopic: string;
+
+  constructor() {
+    this.quizTopic = this.tabs[0].quizTopic;
+  }
 
   ngOnInit() {
     this.selectedTab = this.tabs[0]; // Select the first tab by default
@@ -33,11 +38,7 @@ export class JavascriptComponent implements OnInit {
 
   selectTab(tab: Tab) {
     this.selectedTab = tab;
-    console.log(this.selectedTab.quizTopic);
-  }
-
-  getSelectedTopic(): string {
-    return this.selectedTab ? this.selectedTab.quizTopic : '';
+    this.quizTopic = tab.quizTopic;
   }
 }
 

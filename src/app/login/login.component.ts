@@ -10,6 +10,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   constructor(private http: HttpClient) {}
+
   login() {
     const loginData: { username: string; password: string } = {
       username: this.username,
