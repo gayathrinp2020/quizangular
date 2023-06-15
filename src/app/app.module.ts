@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { QuizComponent } from '../components/quiz/quiz.component';
 import { QuizpageComponent } from './quizpage/quizpage.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AboutComponent } from './about/about.component';
@@ -22,7 +21,6 @@ import { AuthGuard } from './auth.guard';
   declarations: [
     AppComponent,
     LoginComponent,
-    QuizComponent,
     QuizpageComponent,
     RegistrationComponent,
     AboutComponent,
