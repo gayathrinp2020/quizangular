@@ -1,14 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Injector,
-  ComponentRef,
-  ViewChild,
-  ViewContainerRef,
-  Type,
-  ComponentFactoryResolver,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizdbComponent } from '../quizdb/quizdb.component';
 
 @Component({
@@ -16,11 +6,8 @@ import { QuizdbComponent } from '../quizdb/quizdb.component';
   templateUrl: './javascript.component.html',
   styleUrls: ['./javascript.component.css'],
 })
-export class JavascriptComponent implements OnInit, AfterViewInit {
+export class JavascriptComponent implements OnInit {
   selectedTab: Tab | undefined;
-  customInjector: Injector;
-  componentRef: ComponentRef<any> | undefined;
-
   tabs: Tab[] = [
     {
       title: 'Basics',
@@ -38,75 +25,25 @@ export class JavascriptComponent implements OnInit, AfterViewInit {
       quizTopic: 'Java Control Flow',
     },
   ];
+  quizTopic: string;
 
-  @ViewChild('dynamicComponent', { read: ViewContainerRef })
-  dynamicComponentContainer!: ViewContainerRef;
-
-  constructor(
-    private injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {
-    this.customInjector = Injector.create({
-      providers: [],
-      parent: this.injector,
-    });
+  constructor() {
+    this.quizTopic = this.tabs[0].quizTopic;
   }
 
   ngOnInit() {
-    this.selectedTab = this.tabs[0]; // Select the first tab by default
-  }
-
-  ngAfterViewInit() {
-    this.updateCustomInjector();
+    this.selectedTab = this.tabs[0];
+    console.log(this.selectedTab.quizTopic);
   }
 
   selectTab(tab: Tab) {
     this.selectedTab = tab;
-    this.updateCustomInjector();
-  }
-
-  private updateCustomInjector() {
-    if (
-      this.selectedTab &&
-      this.selectedTab.component &&
-      this.selectedTab.quizTopic
-    ) {
-      if (this.componentRef) {
-        this.componentRef.destroy(); // Destroy the existing component if present
-      }
-
-      const componentFactory =
-        this.componentFactoryResolver.resolveComponentFactory(
-          this.selectedTab.component
-        );
-
-      this.dynamicComponentContainer.clear(); // Clear the container before creating a new component
-
-      this.componentRef = this.dynamicComponentContainer.createComponent(
-        componentFactory,
-        undefined,
-        this.customInjector
-      );
-
-      const componentInstance = this.componentRef.instance;
-      componentInstance.quizTopic = this.selectedTab.quizTopic; // Pass the quizTopic value to the component instance
-    } else {
-      if (this.componentRef) {
-        this.componentRef.destroy(); // Destroy the existing component if present
-        this.componentRef = undefined;
-      }
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.componentRef) {
-      this.componentRef.destroy(); // Destroy the component on component destroy
-    }
+    this.quizTopic = tab.quizTopic;
   }
 }
 
 interface Tab {
   title: string;
-  component: Type<any>;
-  quizTopic?: string;
+  component: any;
+  quizTopic: string;
 }

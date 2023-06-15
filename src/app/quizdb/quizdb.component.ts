@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Question {
@@ -22,7 +28,7 @@ interface SelectedAnswers {
   templateUrl: './quizdb.component.html',
   styleUrls: ['./quizdb.component.css'],
 })
-export class QuizdbComponent implements OnInit {
+export class QuizdbComponent implements OnInit, OnChanges {
   @Input() quizTopic!: string;
 
   currentQuestionIndex = 0;
@@ -36,13 +42,26 @@ export class QuizdbComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    const username = localStorage.getItem('username');
+    console.log(username);
     console.log(this.quizTopic);
     this.fetchQuizQuestions();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['quizTopic'] && !changes['quizTopic'].firstChange) {
+      this.fetchQuizQuestions();
+    }
+  }
+
   fetchQuizQuestions(): void {
+    this.currentQuestionIndex = 0;
+    this.quizSubmitted = false;
+    this.score = 0;
+    this.showAlert = false;
+    this.selectedAnswers = [];
     this.http
-      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`) // Use 'any' type for the response
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`)
       .subscribe((response: any) => {
         // Transform the response data to match the expected format
         this.questions = response.map((item: any) => {
