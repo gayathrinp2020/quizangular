@@ -21,15 +21,13 @@ export class LoginComponent {
 
     this.http.post('http://localhost:3000/api/login', loginData).subscribe(
       (response: any) => {
-        console.log('Login successful:', response);
-        const token = uuidv4();
-        localStorage.setItem('userToken', token);
-        localStorage.setItem('username', this.username);
+        console.log(response);
+        localStorage.setItem('token', response.token);
         window.open('/quizpage', '_self');
       },
       // Handle login error
       (error: any) => {
-        console.error('Login error:', error);
+        // console.error('Login error:', error);
         alert('Not a Registered user');
       }
     );

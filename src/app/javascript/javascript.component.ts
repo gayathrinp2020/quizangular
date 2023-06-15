@@ -33,7 +33,6 @@ export class JavascriptComponent implements OnInit {
 
   ngOnInit() {
     this.selectedTab = this.tabs[0];
-    console.log(this.selectedTab.quizTopic);
   }
 
   selectTab(tab: Tab) {
