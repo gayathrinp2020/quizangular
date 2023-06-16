@@ -25,7 +25,10 @@ export class RegistrationComponent {
     console.log('Registration form submitted:', registrationData);
 
     this.http
-      .post('http://localhost:3000/api/register', registrationData)
+      .post(
+        'https://express-service-uihy.onrender.com/api/register',
+        registrationData
+      )
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);

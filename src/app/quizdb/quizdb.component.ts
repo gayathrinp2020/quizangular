@@ -63,9 +63,12 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const headers = { Authorization: `${token}` };
     console.log(headers);
     this.http
-      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`, {
-        headers,
-      })
+      .get<any>(
+        `https://express-service-uihy.onrender.com/api/quiz?topic=${this.quizTopic}`,
+        {
+          headers,
+        }
+      )
       .subscribe((response: any) => {
         const data = response.data;
         const decoded = response.decoded;
@@ -131,9 +134,12 @@ export class QuizdbComponent implements OnInit, OnChanges {
     this.quizSubmitted = true;
     console.log(this.selectedAnswers);
     this.http
-      .post<SubmitResponse>('http://localhost:3000/api/submit', {
-        answers: this.selectedAnswers,
-      })
+      .post<SubmitResponse>(
+        'https://express-service-uihy.onrender.com/api/submit',
+        {
+          answers: this.selectedAnswers,
+        }
+      )
       .subscribe((response: SubmitResponse) => {
         this.score = response.score;
       });
