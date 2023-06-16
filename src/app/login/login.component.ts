@@ -17,22 +17,19 @@ export class LoginComponent {
       password: this.password,
     };
 
-    console.log(this.username, this.password);
-
-    this.http
-      .post('https://express-service-uihy.onrender.com/api/login', loginData)
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-          localStorage.setItem('token', response.token);
-          window.open('/quizpage', '_self');
-        },
-        // Handle login error
-        (error: any) => {
-          // console.error('Login error:', error);
-          alert('Not a Registered user');
-        }
-      );
+    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userid', response.data);
+        console.log(response.data);
+        window.open('/quizpage', '_self');
+      },
+      // Handle login error
+      (error: any) => {
+        // console.error('Login error:', error);
+        alert('Not a Registered user');
+      }
+    );
 
     // Reset the form after login logic
     this.username = '';
