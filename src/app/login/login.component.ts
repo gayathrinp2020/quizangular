@@ -16,17 +16,15 @@ export class LoginComponent {
       username: this.username,
       password: this.password,
     };
-
+    console.log(this.username, this.password);
     this.http.post('http://localhost:3000/api/login', loginData).subscribe(
       (response: any) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('userid', response.data);
-        console.log(response.data);
         window.open('/quizpage', '_self');
       },
       // Handle login error
       (error: any) => {
-        // console.error('Login error:', error);
         alert('Not a Registered user');
       }
     );

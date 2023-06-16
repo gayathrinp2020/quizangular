@@ -14,10 +14,6 @@ interface Question {
   answer: string;
 }
 
-interface SubmitResponse {
-  score: number;
-}
-
 interface SelectedAnswers {
   id: number;
   answers: string[];
@@ -35,6 +31,9 @@ export class QuizdbComponent implements OnInit, OnChanges {
   questions: Question[] = [];
   quizSubmitted = false;
   score = 0;
+  userid = 0;
+  username: any;
+
   showAlert = false;
   quizFetched = false;
   selectedAnswers: SelectedAnswers[] = [];
@@ -129,16 +128,19 @@ export class QuizdbComponent implements OnInit, OnChanges {
   submitQuiz(): void {
     this.quizSubmitted = true;
     const userid = localStorage.getItem('userid');
-    const username = localStorage.getItem('username');
+    const user_name = localStorage.getItem('username');
     this.http
-      .post<SubmitResponse>(
-        `http://localhost:3000/api/submit?topic=${this.quizTopic}&userid=${userid}&username=${username}`,
+      .post<any>(
+        `http://localhost:3000/api/submit?topic=${this.quizTopic}&userid=${userid}&username=${user_name}`,
         {
           answers: this.selectedAnswers,
         }
       )
-      .subscribe((response: SubmitResponse) => {
+      .subscribe((response: any) => {
         this.score = response.score;
+        this.userid = response.data.user_id;
+        this.username = user_name;
+        console.log(this.userid, this.username);
       });
   }
 
