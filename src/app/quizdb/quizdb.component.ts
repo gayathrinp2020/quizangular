@@ -4,8 +4,10 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CertificateComponent } from '../certificate/certificate.component';
 
 interface Question {
   id: number;
@@ -26,7 +28,10 @@ interface SelectedAnswers {
 })
 export class QuizdbComponent implements OnInit, OnChanges {
   @Input() quizTopic!: string;
-
+  @ViewChild('certificate', { static: false })
+  certificate!: CertificateComponent;
+  participantName: string = '';
+  quizTitle: string = '';
   currentQuestionIndex = 0;
   questions: Question[] = [];
   quizSubmitted = false;
@@ -143,7 +148,8 @@ export class QuizdbComponent implements OnInit, OnChanges {
         this.score = response.score;
         this.userid = response.data.user_id;
         this.username = user_name;
-        console.log(this.userid, this.username);
+        this.participantName = this.username;
+        this.quizTitle = this.quizTopic;
       });
   }
 
