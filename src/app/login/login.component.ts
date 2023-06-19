@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,23 +15,18 @@ export class LoginComponent {
       username: this.username,
       password: this.password,
     };
-
     console.log(this.username, this.password);
-
-    this.http
-      .post('https://express-service-uihy.onrender.com/api/login', loginData)
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-          localStorage.setItem('token', response.token);
-          window.open('/quizpage', '_self');
-        },
-        // Handle login error
-        (error: any) => {
-          // console.error('Login error:', error);
-          alert('Not a Registered user');
-        }
-      );
+    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userid', response.data);
+        window.open('/quizpage', '_self');
+      },
+      // Handle login error
+      (error: any) => {
+        alert('Not a Registered user');
+      }
+    );
 
     // Reset the form after login logic
     this.username = '';

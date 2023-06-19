@@ -14,10 +14,6 @@ interface Question {
   answer: string;
 }
 
-interface SubmitResponse {
-  score: number;
-}
-
 interface SelectedAnswers {
   id: number;
   answers: string[];
@@ -35,6 +31,9 @@ export class QuizdbComponent implements OnInit, OnChanges {
   questions: Question[] = [];
   quizSubmitted = false;
   score = 0;
+  userid = 0;
+  username: any;
+
   showAlert = false;
   quizFetched = false;
   selectedAnswers: SelectedAnswers[] = [];
@@ -42,7 +41,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const username = localStorage.getItem('username');
     this.fetchQuizQuestions();
   }
 
@@ -59,19 +57,17 @@ export class QuizdbComponent implements OnInit, OnChanges {
     this.showAlert = false;
     this.selectedAnswers = [];
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = { Authorization: `${token}` };
-    console.log(headers);
     this.http
-      .get<any>(
-        `https://express-service-uihy.onrender.com/api/quiz?topic=${this.quizTopic}`,
-        {
-          headers,
-        }
-      )
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`, {
+        headers,
+      })
       .subscribe((response: any) => {
         const data = response.data;
-        const decoded = response.decoded;
+        const userid = response.decoded.id;
+        const username = response.decoded.username;
+        localStorage.setItem('userid', userid);
+        localStorage.setItem('username', username);
         // Transform the response data to match the expected format
         this.questions = data.map((item: any) => {
           return {
@@ -81,7 +77,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
             answer: '',
           };
         });
-        console.log(response.decoded);
         this.quizFetched = true;
       });
   }
@@ -132,16 +127,20 @@ export class QuizdbComponent implements OnInit, OnChanges {
 
   submitQuiz(): void {
     this.quizSubmitted = true;
-    console.log(this.selectedAnswers);
+    const userid = localStorage.getItem('userid');
+    const user_name = localStorage.getItem('username');
     this.http
-      .post<SubmitResponse>(
-        'https://express-service-uihy.onrender.com/api/submit',
+      .post<any>(
+        `http://localhost:3000/api/submit?topic=${this.quizTopic}&userid=${userid}&username=${user_name}`,
         {
           answers: this.selectedAnswers,
         }
       )
-      .subscribe((response: SubmitResponse) => {
+      .subscribe((response: any) => {
         this.score = response.score;
+        this.userid = response.data.user_id;
+        this.username = user_name;
+        console.log(this.userid, this.username);
       });
   }
 

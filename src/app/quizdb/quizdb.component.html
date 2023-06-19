@@ -30,10 +30,18 @@
         Submit
     </button>
 
-    <div *ngIf="quizSubmitted">
+    <div class="score-container" *ngIf="quizSubmitted">
         <h2>Quiz submitted!</h2>
-        <!-- <p> {{ username }} </p> -->
-        <p>Your score: {{ score }} out of {{ questions.length }}</p>
+        <p><b>Topic: {{ quizTopic }}</b></p>
+        <p>{{ username }}</p>
+        <div class="score-container">
+            <p>Your score:</p>
+            <div class="progress-bar">
+                <div class="progress" [style.width]="(score / questions.length) * 100 + '%'"></div>
+            </div>
+            <p><b>{{ score }} out of {{ questions.length }}</b></p>
+        </div>
         <button class="restart-button" (click)="restartQuiz()">Restart</button>
     </div>
+
 </div>
