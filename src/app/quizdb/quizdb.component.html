@@ -24,18 +24,20 @@
             Please select an answer before proceeding.
         </div>
     </div>
-
     <button class="submit-button" (click)="submitQuiz()"
         *ngIf="currentQuestionIndex === questions.length - 1 && !quizSubmitted">
         Submit
     </button>
-
     <div class="score-container" *ngIf="quizSubmitted">
         <h2>Quiz submitted!</h2>
-        <p><b>Topic: {{ quizTopic }}</b></p>
-        <p>{{ username }}</p>
         <div class="score-container">
-            <p>Your score:</p>
+            <ng-container *ngIf="(score / questions.length) > 0.5">
+                <app-certificate #certificate [participantName]="participantName || ''" [quizTitle]="quizTitle || ''"
+                    [score]="score"></app-certificate>
+                <br>
+                <button class="restart-button" (click)="certificate.printCertificate()">Generate Certificate</button>
+            </ng-container>
+            <br>
             <div class="progress-bar">
                 <div class="progress" [style.width]="(score / questions.length) * 100 + '%'"></div>
             </div>
@@ -43,5 +45,4 @@
         </div>
         <button class="restart-button" (click)="restartQuiz()">Restart</button>
     </div>
-
 </div>

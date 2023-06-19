@@ -16,6 +16,7 @@ import { RectjsComponent } from './rectjs/rectjs.component';
 import { QuizdbComponent } from './quizdb/quizdb.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
+import { CertificateComponent } from './certificate/certificate.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuthGuard } from './auth.guard';
     RectjsComponent,
     QuizdbComponent,
     LogoutComponent,
+    CertificateComponent,
   ],
   imports: [
     BrowserModule,

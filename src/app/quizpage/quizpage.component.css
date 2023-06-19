@@ -1,6 +1,8 @@
 .quiz-page{
     position: absolute;
-    top:40px
+    top:40px;
+    left:0;
+    right: 0;
 }
 
 /* navstyle.css */
@@ -10,7 +12,7 @@
     margin: 0;
     padding: 0;
     background: #0b2a31;
-    width: 100vw;
+    /* width: 100vw; */
      }
   
   .menu li {
