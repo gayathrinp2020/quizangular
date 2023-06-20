@@ -14,13 +14,13 @@ const routes: Routes = [
   {
     path: 'quizpage',
     component: QuizpageComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'python', pathMatch: 'full' },
       { path: 'python', component: PythonComponent },
       { path: 'javascript', component: JavascriptComponent },
       { path: 'rectjs', component: RectjsComponent },
     ],
-    canActivate: [AuthGuard],
   },
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
