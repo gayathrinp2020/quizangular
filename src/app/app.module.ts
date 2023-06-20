@@ -17,6 +17,7 @@ import { QuizdbComponent } from './quizdb/quizdb.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { CertificateComponent } from './certificate/certificate.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CertificateComponent } from './certificate/certificate.component';
     QuizdbComponent,
     LogoutComponent,
     CertificateComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

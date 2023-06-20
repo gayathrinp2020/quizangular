@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QuizpageComponent } from './quizpage/quizpage.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -9,6 +9,7 @@ import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({
