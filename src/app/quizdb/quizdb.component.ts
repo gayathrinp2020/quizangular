@@ -36,6 +36,7 @@ export class QuizdbComponent implements OnInit, OnChanges {
   questions: Question[] = [];
   quizSubmitted = false;
   score = 0;
+  perscore = 0;
   userid = 0;
   username: any;
 
@@ -143,6 +144,8 @@ export class QuizdbComponent implements OnInit, OnChanges {
       )
       .subscribe((response: any) => {
         this.score = response.score;
+        this.perscore = response.perscore.toFixed(2);
+        console.log(this.perscore);
         this.userid = response.data.user_id;
         this.username = user_name;
         this.participantName = this.username;
