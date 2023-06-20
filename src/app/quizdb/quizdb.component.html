@@ -33,7 +33,7 @@
         <div class="score-container">
             <ng-container *ngIf="(score / questions.length) > 0.5">
                 <app-certificate #certificate [participantName]="participantName || ''" [quizTitle]="quizTitle || ''"
-                    [score]="score"></app-certificate>
+                    [score]="perscore"></app-certificate>
                 <br>
                 <button class="restart-button" (click)="certificate.printCertificate()">Generate Certificate</button>
             </ng-container>
