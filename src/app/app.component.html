@@ -12,7 +12,6 @@
     <a class="about" routerLink="/quizpage" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         target="_self">Home</a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a class="about" routerLink="/logout" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        target="_self">Logout</a>
+    <a class="about" (click)="logout()">Logout</a>
 </div>
 <router-outlet></router-outlet>
