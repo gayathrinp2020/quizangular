@@ -10,6 +10,7 @@ export class RegistrationComponent {
   username = '';
   email = '';
   password = '';
+  errorMessage = '';
   constructor(private http: HttpClient) {}
   register() {
     const registrationData: {
@@ -29,10 +30,18 @@ export class RegistrationComponent {
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);
+        },
+        (error) => {
+          if (
+            error.status === 500 &&
+            error.error.error === 'Internal server error'
+          ) {
+            this.errorMessage = 'Username already exists';
+          } else {
+            this.errorMessage = 'An error occurred during registration';
+          }
+          console.log('Registration error:', error);
         }
-        // (error) => {
-        //   console.log('Registration error:', error);
-        // }
       );
 
     // Reset the form after registration logic

@@ -39,4 +39,6 @@ label {
     border-radius: 3px;
     cursor: pointer;
   }
- 
+ .error{
+  color: red;
+ }

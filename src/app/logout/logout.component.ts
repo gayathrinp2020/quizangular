@@ -11,6 +11,7 @@ export class LogoutComponent implements OnInit {
   isAuthenticated: boolean = false;
   constructor(private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
+    this.authService.setAuthenticated(true);
     localStorage.clear();
     this.router.navigate(['/login']);
   }
