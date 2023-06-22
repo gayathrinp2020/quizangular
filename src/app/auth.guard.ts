@@ -12,8 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     const isAuthenticated = localStorage.getItem('token') !== null;
     if (!isAuthenticated) {
-      this.router.navigate(['/login']); // Replace '/login' with your login route
-      return of(false);
+      this.router.navigate(['/login']);
     }
     return of(true);
   }

@@ -30,8 +30,6 @@ export class LoginComponent {
         // Update the authentication status using AuthService
         this.authService.setAuthenticated(true);
 
-        // window.open('/quizpage', '_self');
-
         this.router.navigate(['/quizpage']);
       },
       // Handle login error
