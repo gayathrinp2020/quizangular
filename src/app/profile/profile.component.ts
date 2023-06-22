@@ -21,9 +21,12 @@ export class ProfileComponent implements OnInit {
     const headers = { Authorization: `${token}` };
 
     this.http
-      .get<any>(`http://localhost:3000/api/profile?username=${username}`, {
-        headers,
-      })
+      .get<any>(
+        `https://express-service-uihy.onrender.com/api/profile?username=${username}`,
+        {
+          headers,
+        }
+      )
       .subscribe((response: any) => {
         this.responseData = response;
         response.forEach((data: any, index: number) => {
