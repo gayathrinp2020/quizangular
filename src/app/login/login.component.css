@@ -46,6 +46,16 @@
   .login-secton{
     width: 300px;   
   }
-  .register{
+  .register, .forgot-password{
     color: #fff;
+  }
+
+  .avatar {
+    margin-bottom: 20px;
+  }
+  
+  .avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }

@@ -10,6 +10,7 @@ export class RegistrationComponent {
   username = '';
   email = '';
   password = '';
+  errorMessage = '';
   constructor(private http: HttpClient) {}
   register() {
     const registrationData: {
@@ -25,17 +26,22 @@ export class RegistrationComponent {
     console.log('Registration form submitted:', registrationData);
 
     this.http
-      .post(
-        'https://express-service-uihy.onrender.com/api/register',
-        registrationData
-      )
+      .post('http://localhost:3000/api/register', registrationData)
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);
+        },
+        (error) => {
+          if (
+            error.status === 500 &&
+            error.error.error === 'Internal server error'
+          ) {
+            this.errorMessage = 'Username already exists';
+          } else {
+            this.errorMessage = 'An error occurred during registration';
+          }
+          console.log('Registration error:', error);
         }
-        // (error) => {
-        //   console.log('Registration error:', error);
-        // }
       );
 
     // Reset the form after registration logic

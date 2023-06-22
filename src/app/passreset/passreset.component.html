@@ -1,0 +1,26 @@
+<div class="reset-section">
+    <h2>Password Reset</h2>
+    <form (ngSubmit)="resetPassword()">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="email" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newpassword" [(ngModel)]="newpassword" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+        </div>
+
+        <div *ngIf="passwordsDoNotMatch" class="error-message">
+            Passwords do not match.
+        </div>
+        <br>
+        <button type="submit">Reset Password</button>
+    </form>
+    <div class="error" *ngIf="resetError" class="error-message">{{ resetError }}</div>
+</div>

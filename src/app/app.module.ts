@@ -18,6 +18,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { CertificateComponent } from './certificate/certificate.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PassresetComponent } from './passreset/passreset.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     LogoutComponent,
     CertificateComponent,
     ProfileComponent,
+    PassresetComponent,
   ],
   imports: [
     BrowserModule,
