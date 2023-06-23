@@ -39,7 +39,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
   perscore = 0;
   userid = 0;
   username: any;
-
   showAlert = false;
   quizFetched = false;
   selectedAnswers: SelectedAnswers[] = [];
@@ -98,7 +97,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
     ) {
       return { id: 0, question: '', options: [], answer: '' };
     }
-
     return this.questions[this.currentQuestionIndex];
   }
 
@@ -107,7 +105,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const selectedAnswerIndex = this.selectedAnswers.findIndex(
       (answer) => answer.id === currentQuestion.id
     );
-
     if (selectedAnswerIndex > -1) {
       // Update existing answer
       this.selectedAnswers[selectedAnswerIndex].answers = [selectedOption];
@@ -128,7 +125,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
       }, 3000);
       return;
     }
-
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
     }
@@ -148,7 +144,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
       .subscribe((response: any) => {
         this.score = response.score;
         this.perscore = response.perscore.toFixed(2);
-        console.log(this.perscore);
         this.userid = response.data.user_id;
         this.username = user_name;
         this.participantName = this.username;

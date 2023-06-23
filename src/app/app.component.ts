@@ -23,4 +23,8 @@ export class AppComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+  profile(): void {
+    this.authService.setAuthenticated(true);
+    this.router.navigate(['/profile']);
+  }
 }

@@ -1,5 +1,14 @@
+.profile{
+  padding: 40px;
+  text-align: center;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+}
 .profile-table {
     border-collapse: collapse;
+    min-width: 500px;
     width: fit-content;
   }
   

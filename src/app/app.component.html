@@ -4,7 +4,7 @@
     <span>Welcome</span>
     <div class="spacer"></div>
     <a *ngIf="isAuthenticated" class="about" routerLink="/profile" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }" target="_self">Profile</a>
+        [routerLinkActiveOptions]="{ exact: true }" target="_self" (click)="profile()">Profile</a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a class="about" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         target="_self">About</a>

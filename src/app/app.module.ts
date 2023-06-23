@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +15,6 @@ import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
 import { QuizdbComponent } from './quizdb/quizdb.component';
-import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { CertificateComponent } from './certificate/certificate.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -31,7 +31,6 @@ import { PassresetComponent } from './passreset/passreset.component';
     JavascriptComponent,
     RectjsComponent,
     QuizdbComponent,
-    LogoutComponent,
     CertificateComponent,
     ProfileComponent,
     PassresetComponent,
@@ -39,6 +38,7 @@ import { PassresetComponent } from './passreset/passreset.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,

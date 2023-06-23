@@ -10,6 +10,7 @@ export class RegistrationComponent {
   username = '';
   email = '';
   password = '';
+  confirmPassword = '';
   errorMessage = '';
   constructor(private http: HttpClient) {}
   register() {
@@ -51,5 +52,6 @@ export class RegistrationComponent {
     this.username = '';
     this.email = '';
     this.password = '';
+    this.confirmPassword = '';
   }
 }

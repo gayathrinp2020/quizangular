@@ -16,7 +16,7 @@
             <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
         </div>
 
-        <div *ngIf="passwordsDoNotMatch" class="error-message">
+        <div class="error" *ngIf="passwordsDoNotMatch">
             Passwords do not match.
         </div>
         <br>

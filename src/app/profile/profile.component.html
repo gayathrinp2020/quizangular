@@ -1,17 +1,22 @@
-<h2>Profile!</h2>
-<h3> Username: {{ responseData[0]?.username }}</h3>
-<h3> Email: {{ responseData[0]?.email }}</h3>
-<table class="profile-table">
-    <thead>
-        <tr>
-            <th>Quiz Topic</th>
-            <th>Score</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let data of responseData">
-            <td>{{ data.quiz_topic }}</td>
-            <td>{{ data.score }} %</td>
-        </tr>
-    </tbody>
-</table>
+<div class="profile">
+    <h2>Profile!</h2>
+    <h3>Progress Tracking</h3>
+    <h3> Username: {{ responseData[0]?.username }}</h3>
+    <h3> Email: {{ responseData[0]?.email }}</h3>
+    <div class="table-container">
+        <table class="profile-table">
+            <thead>
+                <tr>
+                    <th>Quiz Topic</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of responseData">
+                    <td>{{ data.quiz_topic }}</td>
+                    <td>{{ data.score }} %</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

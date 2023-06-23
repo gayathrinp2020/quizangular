@@ -22,7 +22,7 @@ export class LoginComponent {
       username: this.username,
       password: this.password,
     };
-    console.log(this.username, this.password);
+
     this.http
       .post('https://express-service-uihy.onrender.com/api/login', loginData)
       .subscribe(

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -8,14 +9,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
   responseData: any[] = [];
-
-  constructor(private http: HttpClient) {}
+  isAuthenticated: boolean = false;
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.profile();
   }
 
   profile() {
+    this.authService.setAuthenticated(true);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const headers = { Authorization: `${token}` };
@@ -29,13 +35,6 @@ export class ProfileComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.responseData = response;
-        response.forEach((data: any, index: number) => {
-          console.log(`Data ${index}:`);
-          console.log(`Username: ${data.username}`);
-          console.log(`Email: ${data.email}`);
-          console.log(`Quiz Topic: ${data.quiz_topic}`);
-          console.log(`Score: ${data.score}`);
-        });
       });
   }
 }
