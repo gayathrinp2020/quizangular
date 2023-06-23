@@ -22,6 +22,7 @@ export class LoginComponent {
       username: this.username,
       password: this.password,
     };
+
     this.http
       .post('https://express-service-uihy.onrender.com/api/login', loginData)
       .subscribe(
@@ -30,6 +31,7 @@ export class LoginComponent {
           localStorage.setItem('userid', response.data);
           // Update the authentication status using AuthService
           this.authService.setAuthenticated(true);
+
           this.router.navigate(['/quizpage']);
         },
         // Handle login error
