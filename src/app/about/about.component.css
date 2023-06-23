@@ -1,7 +1,9 @@
 .about-page {
     padding: 20px;
     position: absolute;
-    top: 40px;  
+    top: 40px; 
+    overflow: auto; 
+    height: calc(100vh - 60px);
   }
   
   .about-image {

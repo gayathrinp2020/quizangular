@@ -39,7 +39,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
   perscore = 0;
   userid = 0;
   username: any;
-
   showAlert = false;
   quizFetched = false;
   selectedAnswers: SelectedAnswers[] = [];
@@ -65,12 +64,9 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const token = localStorage.getItem('token');
     const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(
-        `https://express-service-uihy.onrender.com/api/quiz?topic=${this.quizTopic}`,
-        {
-          headers,
-        }
-      )
+      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`, {
+        headers,
+      })
       .subscribe((response: any) => {
         const data = response.data;
         const userid = response.decoded.id;
@@ -98,7 +94,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
     ) {
       return { id: 0, question: '', options: [], answer: '' };
     }
-
     return this.questions[this.currentQuestionIndex];
   }
 
@@ -107,7 +102,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const selectedAnswerIndex = this.selectedAnswers.findIndex(
       (answer) => answer.id === currentQuestion.id
     );
-
     if (selectedAnswerIndex > -1) {
       // Update existing answer
       this.selectedAnswers[selectedAnswerIndex].answers = [selectedOption];
@@ -128,7 +122,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
       }, 3000);
       return;
     }
-
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
     }
@@ -148,7 +141,6 @@ export class QuizdbComponent implements OnInit, OnChanges {
       .subscribe((response: any) => {
         this.score = response.score;
         this.perscore = response.perscore.toFixed(2);
-        console.log(this.perscore);
         this.userid = response.data.user_id;
         this.username = user_name;
         this.participantName = this.username;

@@ -10,6 +10,7 @@ export class RegistrationComponent {
   username = '';
   email = '';
   password = '';
+  confirmPassword = '';
   errorMessage = '';
   constructor(private http: HttpClient) {}
   register() {
