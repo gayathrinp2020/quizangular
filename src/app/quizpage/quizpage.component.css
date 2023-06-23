@@ -12,7 +12,10 @@
     margin: 0;
     padding: 0;
     background: #0b2a31;
-    /* width: 100vw; */
+    color: #e8f0f2;
+  font-size: 14px;
+  font-weight: 600;
+
      }
   
   .menu li {

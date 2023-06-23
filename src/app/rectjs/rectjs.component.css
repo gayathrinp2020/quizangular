@@ -1,9 +1,11 @@
 .tabs {
   display: flex;
   column-gap: 30px;
-  background: #053742;
+  background: #878789;
   padding: 2rem 1rem;
   color: #e8f0f2;
+  font-size: 14px;
+  font-weight: 600;
 
   @media (max-width: 769px) {
     padding: 2rem 0;
@@ -20,6 +22,7 @@
   padding: 0px;
   margin-left:10px;
   overflow: hidden;
+  background: #0b2a31;
    }
 
 .tab {
