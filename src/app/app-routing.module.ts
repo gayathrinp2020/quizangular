@@ -7,7 +7,6 @@ import { AboutComponent } from './about/about.component';
 import { PythonComponent } from './python/python.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { RectjsComponent } from './rectjs/rectjs.component';
-import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { PassresetComponent } from './passreset/passreset.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
     ],
   },
   { path: 'about', component: AboutComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 ];
 
