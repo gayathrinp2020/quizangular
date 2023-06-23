@@ -20,10 +20,11 @@
     <div class="form-entry">
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
-      <div *ngIf="password !== confirmPassword" class="error-message">
-        Passwords do not match
-      </div>
     </div>
+    <div *ngIf="password !== confirmPassword" class="error">
+      Passwords do not match
+    </div>
+
     <br>
     <button type="submit">Register</button>
   </form>
