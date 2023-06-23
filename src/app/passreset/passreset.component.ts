@@ -27,7 +27,10 @@ export class PassresetComponent {
     };
     console.log(this.email, this.newpassword);
     this.http
-      .post('http://localhost:3000/api/reset_password', resetData)
+      .post(
+        'https://express-service-uihy.onrender.com/api/reset_password',
+        resetData
+      )
       .subscribe(
         (response) => {
           console.log(response); // Password reset successful

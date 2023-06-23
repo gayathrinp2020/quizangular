@@ -64,9 +64,12 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const token = localStorage.getItem('token');
     const headers = { Authorization: `${token}` };
     this.http
-      .get<any>(`http://localhost:3000/api/quiz?topic=${this.quizTopic}`, {
-        headers,
-      })
+      .get<any>(
+        `https://express-service-uihy.onrender.com/api/quiz?topic=${this.quizTopic}`,
+        {
+          headers,
+        }
+      )
       .subscribe((response: any) => {
         const data = response.data;
         const userid = response.decoded.id;
