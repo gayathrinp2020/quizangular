@@ -25,24 +25,20 @@ export class PassresetComponent {
       email: this.email,
       newpassword: this.newpassword,
     };
-    console.log(this.email, this.newpassword);
     this.http
-      .post(
-        'https://express-service-uihy.onrender.com/api/reset_password',
-        resetData
-      )
+      .post('http://localhost:3000/api/reset_password', resetData)
       .subscribe(
         (response) => {
           console.log(response); // Password reset successful
-          this.router.navigate(['/quizpage']);
+          this.router.navigate(['/login']);
         },
         (error) => {
           this.resetError = 'Incorrect email'; // Set the error message
-          console.error(error);
         }
       );
     this.email = '';
     this.newpassword = '';
     this.confirmPassword = '';
+    this.resetError = '';
   }
 }

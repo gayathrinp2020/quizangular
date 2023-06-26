@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -7,24 +8,42 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
-  username = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
+  registrationForm: FormGroup;
   errorMessage = '';
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+    this.registrationForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    });
+  }
+
+  get email() {
+    return this.registrationForm.get('email');
+  }
+
+  get password() {
+    return this.registrationForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registrationForm.get('confirmPassword');
+  }
+
   register() {
-    const registrationData: {
-      username: string;
-      email: string;
-      password: string;
-    } = {
-      username: this.username,
-      email: this.email,
-      password: this.password,
+    if (this.registrationForm.invalid) {
+      return;
+    }
+
+    const registrationData = {
+      username: this.registrationForm.value.username,
+      email: this.registrationForm.value.email,
+      password: this.registrationForm.value.password,
     };
-    console.log(this.username);
-    console.log('Registration form submitted:', registrationData);
+
+    console.log('Registration form submitted:');
 
     this.http
       .post(
@@ -33,7 +52,7 @@ export class RegistrationComponent {
       )
       .subscribe(
         (response) => {
-          console.log('Registration successful:', response);
+          console.log('Registration successful:');
         },
         (error) => {
           if (
@@ -48,10 +67,6 @@ export class RegistrationComponent {
         }
       );
 
-    // Reset the form after registration logic
-    this.username = '';
-    this.email = '';
-    this.password = '';
-    this.confirmPassword = '';
+    this.registrationForm.reset();
   }
 }
