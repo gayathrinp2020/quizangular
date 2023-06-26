@@ -23,22 +23,20 @@ export class LoginComponent {
       password: this.password,
     };
 
-    this.http
-      .post('https://express-service-uihy.onrender.com/api/login', loginData)
-      .subscribe(
-        (response: any) => {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('userid', response.data);
-          // Update the authentication status using AuthService
-          this.authService.setAuthenticated(true);
+    this.http.post('http://localhost:3000/api/login', loginData).subscribe(
+      (response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('userid', response.data);
+        // Update the authentication status using AuthService
+        this.authService.setAuthenticated(true);
 
-          this.router.navigate(['/quizpage']);
-        },
-        // Handle login error
-        (error: any) => {
-          alert('Not a Registered user');
-        }
-      );
+        this.router.navigate(['/quizpage']);
+      },
+      // Handle login error
+      (error: any) => {
+        alert('Not a Registered user');
+      }
+    );
 
     // Reset the form after login logic
     this.username = '';

@@ -136,7 +136,7 @@ export class QuizdbComponent implements OnInit, OnChanges {
     const user_name = localStorage.getItem('username');
     this.http
       .post<any>(
-        `https://express-service-uihy.onrender.com/api/submit?topic=${this.quizTopic}&userid=${userid}&username=${user_name}`,
+        `http://localhost:3000/api/submit?topic=${this.quizTopic}&userid=${userid}&username=${user_name}`,
         {
           answers: this.selectedAnswers,
         }

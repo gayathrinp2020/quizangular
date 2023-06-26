@@ -23,8 +23,7 @@ export class RegistrationComponent {
       email: this.email,
       password: this.password,
     };
-    console.log(this.username);
-    console.log('Registration form submitted:', registrationData);
+    console.log('Registration form submitted:');
 
     this.http
       .post(
@@ -33,7 +32,7 @@ export class RegistrationComponent {
       )
       .subscribe(
         (response) => {
-          console.log('Registration successful:', response);
+          console.log('Registration successful:');
         },
         (error) => {
           if (
